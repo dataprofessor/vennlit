@@ -1,0 +1,4 @@
+streamlit
+matplotlib
+matplotlib_venn
+pandas
