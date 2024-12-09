@@ -3,6 +3,72 @@ import matplotlib.pyplot as plt
 from matplotlib_venn import venn2, venn3
 import pandas as pd
 
+# Define sample data
+SAMPLE_DATA = {
+    'List A': '''mol001 
+mol002 
+mol003 
+mol004 
+mol005 
+mol006 
+mol007 
+mol008 
+mol009 
+mol010 
+mol017 
+mol018 
+mol019 
+mol020 
+mol021 
+mol022 
+mol023 
+mol030 
+mol031 
+mol032''',
+    'List B': '''mol011 
+mol012 
+mol013 
+mol014 
+mol015 
+mol016 
+mol017 
+mol018 
+mol019 
+mol020 
+mol021 
+mol022 
+mol023 
+mol033 
+mol034 
+mol035 
+mol036''',
+    'List C': '''mol020 
+mol021 
+mol022 
+mol023 
+mol024 
+mol025 
+mol026 
+mol027 
+mol028 
+mol029 
+mol030 
+mol031 
+mol032 
+mol033 
+mol034 
+mol035 
+mol036'''
+}
+
+# Initialize session state for text areas
+if 'list1_content' not in st.session_state:
+    st.session_state.list1_content = ''
+if 'list2_content' not in st.session_state:
+    st.session_state.list2_content = ''
+if 'list3_content' not in st.session_state:
+    st.session_state.list3_content = ''
+
 st.header('⭕ VennLit')
 with st.expander('About this App'):
     st.write('''
@@ -14,20 +80,24 @@ with st.expander('About this App'):
     - `pandas`
     ''')
 
-# Navigation
+# Navigation and Sample Data Button in sidebar
 with st.sidebar:
     page = st.radio('Choose', ['2 Lists', '3 Lists'])
+    if st.button('Load Sample Data'):
+        st.session_state.list1_content = SAMPLE_DATA['List A']
+        st.session_state.list2_content = SAMPLE_DATA['List B']
+        st.session_state.list3_content = SAMPLE_DATA['List C']
 
 # Venns Diagram - 2 Lists
 if page == '2 Lists':
     st.subheader('Input')
     col1, col2 = st.columns(2)
     with col1:
-        list1 = st.text_area('List 1').split()
-        list1_name = st.text_input('List 1 name')
+        list1 = st.text_area('List 1', value=st.session_state.list1_content).split()
+        list1_name = st.text_input('List 1 name', value='List A')
     with col2:
-        list2 = st.text_area('List 2').split()
-        list2_name = st.text_input('List 2 name')
+        list2 = st.text_area('List 2', value=st.session_state.list2_content).split()
+        list2_name = st.text_input('List 2 name', value='List B')
 
     if (list1 != []) and (list2 != []):
         # Making the Venn diagram plot
@@ -88,14 +158,14 @@ if page == '3 Lists':
     st.subheader('Input')
     col1, col2, col3 = st.columns(3)
     with col1:
-        list1 = st.text_area('List 1').split()
-        list1_name = st.text_input('List 1 name')
+        list1 = st.text_area('List 1', value=st.session_state.list1_content).split()
+        list1_name = st.text_input('List 1 name', value='List A')
     with col2:
-        list2 = st.text_area('List 2').split()
-        list2_name = st.text_input('List 2 name')
+        list2 = st.text_area('List 2', value=st.session_state.list2_content).split()
+        list2_name = st.text_input('List 2 name', value='List B')
     with col3:
-        list3 = st.text_area('List 3').split()
-        list3_name = st.text_input('List 3 name')
+        list3 = st.text_area('List 3', value=st.session_state.list3_content).split()
+        list3_name = st.text_input('List 3 name', value='List C')
 
     if (list1 != []) and (list2 != []) and (list3 != []):
         # Making the Venn diagram plot
