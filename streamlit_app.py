@@ -66,7 +66,7 @@ with st.sidebar:
             st.session_state.list2_content = ''
             st.session_state.list3_content = ''
 
-# Venns Diagram - 2 Lists
+# Venn Diagram - 2 Lists
 if page == '2 Lists':
     st.subheader('Input')
     col1, col2 = st.columns(2)
@@ -131,7 +131,7 @@ if page == '2 Lists':
     else:
         st.info('☝️ Enter data to proceed!')
 
-# Venns Diagram - 3 Lists
+# Venn Diagram - 3 Lists
 if page == '3 Lists':
     st.subheader('Input')
     col1, col2, col3 = st.columns(3)
