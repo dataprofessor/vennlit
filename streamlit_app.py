@@ -6,11 +6,11 @@ import pandas as pd
 # Define sample data
 def load_sample_data():
     try:
-        with open('list_a.txt', 'r') as f:
+        with open('data/list_a.txt', 'r') as f:
             list_a = f.read()
-        with open('list_b.txt', 'r') as f:
+        with open('data/list_b.txt', 'r') as f:
             list_b = f.read()
-        with open('list_c.txt', 'r') as f:
+        with open('data/list_c.txt', 'r') as f:
             list_c = f.read()
         return {
             'List A': list_a,
