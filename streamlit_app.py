@@ -84,12 +84,12 @@ st.warning('''
 with st.sidebar:
     page = st.radio('Choose', ['2 Lists', '3 Lists'])
     st.divider()  # Add a visual separator
-    st.subheader('Data Controls')
+    st.subheader('Sample Data')
     col1, col2 = st.columns(2)
     
     # Sample data button
     with col1:
-        if st.button('Load Sample Data', use_container_width=True):
+        if st.button('Load Data', use_container_width=True):
             st.session_state.list1_content = SAMPLE_DATA['List A']
             st.session_state.list2_content = SAMPLE_DATA['List B']
             st.session_state.list3_content = SAMPLE_DATA['List C']
