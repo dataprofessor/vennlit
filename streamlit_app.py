@@ -82,8 +82,11 @@ st.warning('''
 
 # Navigation and Sample Data Button in sidebar
 with st.sidebar:
+    st.subheader('Type of Venn diagram')
     page = st.radio('Choose', ['2 Lists', '3 Lists'])
-    st.divider()  # Add a visual separator
+    
+    st.divider()
+    
     st.subheader('Sample Data')
     col1, col2 = st.columns(2)
     
