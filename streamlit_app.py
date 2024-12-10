@@ -4,62 +4,24 @@ from matplotlib_venn import venn2, venn3
 import pandas as pd
 
 # Define sample data
-SAMPLE_DATA = {
-    'List A': '''mol001 
-mol002 
-mol003 
-mol004 
-mol005 
-mol006 
-mol007 
-mol008 
-mol009 
-mol010 
-mol017 
-mol018 
-mol019 
-mol020 
-mol021 
-mol022 
-mol023 
-mol030 
-mol031 
-mol032''',
-    'List B': '''mol011 
-mol012 
-mol013 
-mol014 
-mol015 
-mol016 
-mol017 
-mol018 
-mol019 
-mol020 
-mol021 
-mol022 
-mol023 
-mol033 
-mol034 
-mol035 
-mol036''',
-    'List C': '''mol020 
-mol021 
-mol022 
-mol023 
-mol024 
-mol025 
-mol026 
-mol027 
-mol028 
-mol029 
-mol030 
-mol031 
-mol032 
-mol033 
-mol034 
-mol035 
-mol036'''
-}
+def load_sample_data():
+    try:
+        with open('list_a.txt', 'r') as f:
+            list_a = f.read()
+        with open('list_b.txt', 'r') as f:
+            list_b = f.read()
+        with open('list_c.txt', 'r') as f:
+            list_c = f.read()
+        return {
+            'List A': list_a,
+            'List B': list_b,
+            'List C': list_c
+        }
+    except FileNotFoundError:
+        st.error("Sample data files not found. Please ensure lista.txt, listb.txt, and listc.txt are in the same directory as the script.")
+        return None
+
+SAMPLE_DATA = load_sample_data()
 
 # Initialize session state for text areas
 if 'list1_content' not in st.session_state:
@@ -70,7 +32,7 @@ if 'list3_content' not in st.session_state:
     st.session_state.list3_content = ''
 
 st.header('⭕ VennLit')
-# with st.expander('About this App'):
+
 st.warning('''
     This app allows you to create Venn diagrams.
     Libraries used:
@@ -80,7 +42,7 @@ st.warning('''
     - `pandas`
     ''')
 
-# Navigation and Sample Data Button in sidebar
+# Navigation and Sample Data buttons
 with st.sidebar:
     st.subheader('Type of Venn diagram')
     page = st.radio('Choose', ['2 Lists', '3 Lists'])
