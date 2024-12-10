@@ -70,8 +70,8 @@ if 'list3_content' not in st.session_state:
     st.session_state.list3_content = ''
 
 st.header('⭕ VennLit')
-with st.expander('About this App'):
-    st.write('''
+# with st.expander('About this App'):
+st.write('''
     This app allows you to create Venn diagrams.
     Libraries used:
     - `streamlit`
